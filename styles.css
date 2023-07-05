@@ -1,0 +1,90 @@
+/* The sidebar menu */
+.sidenav {
+  height: auto; /* Full-height: remove this if you want "auto" height */
+  width: auto; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #f3f7ff; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding: 20px 10px 20px 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #111;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #fbfbfb;
+  background-color: #525966; /* Black */
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidenav {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidenav a {float: left;}
+  div.content {margin-left: 0;}
+
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidenav a {
+    text-align: center;
+    float: none;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 180px;
+  /* bottom = footer height */
+  padding: 25px;
+  font-size: 15px;
+}
+
+.footer {
+  padding: 10px 0px 10px 0px;
+  margin-bottom: 1px;
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  width: 100%;
+  background-color: #525966; 
+  color: white;
+  /*text-align: left;*/
+}
+
+.proficpic {
+  display: block; 
+  margin-left: auto;
+	margin-right: auto; 
+  padding-top: 20px; 
+  /*border-style: solid; border-color: red;*/
+}
+
+.smallpic {
+  display: block; 
+  margin-left: auto;
+	margin-right: auto; 
+  padding-top: 20px; 
+  
+}
