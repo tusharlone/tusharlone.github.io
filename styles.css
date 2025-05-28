@@ -1,6 +1,22 @@
+body{
+  font-family: 'Inter', sans-serif;
+  margin-top: 25px;
+  font-size: 14.5px;
+}
+a{
+  color: #396bcd; /* Blue */
+  text-decoration: none;
+}
+#name{
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  color: #111; /* Blue */
+  text-shadow: 2px 2px 5px rgb(234, 234, 234);
+}
 /* The sidebar menu */
 .sidenav {
-  height: auto; /* Full-height: remove this if you want "auto" height */
+  height: 100%; /* Full-height: remove this if you want "auto" height */
   width: auto; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
@@ -11,24 +27,28 @@
   padding: 20px 10px 20px 10px;
   margin-top: 5px;
   margin-left: 5px;
-  
+  border-right: #eaf1ff 5px solid;
 }
-
 /* The navigation menu links */
 .sidenav a {
-  padding: 6px 8px 6px 16px;
+  margin: 1px;
+  padding: 6px 8px 6px 8px;
   text-decoration: none;
   font-size: 18px;
   color: #111;
   display: block;
 }
-
+.sidenav a.current {
+  background-color: #192f5c; /* Blue */
+  color: white;
+  border: #192f5c 0.5px solid; /* Blue */
+  border-radius: 3px; /* Rounded corners */
+}
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #fbfbfb;
-  background-color: #525966; /* Black */
+  background-color: #396bcd; /* Black */
 }
-
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   .sidenav {
@@ -38,9 +58,7 @@
   }
   .sidenav a {float: left;}
   div.content {margin-left: 0;}
-
 }
-
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
   .sidenav a {
@@ -48,43 +66,44 @@
     float: none;
   }
 }
-
 html {
   position: relative;
   min-height: 100%;
 }
-
-body {
-  margin: 0 0 180px;
-  /* bottom = footer height */
-  padding: 25px;
-  font-size: 15px;
+h5 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111; /* Blue */
 }
-
-.footer {
-  padding: 10px 0px 10px 0px;
-  margin-bottom: 1px;
-  position: absolute;
-  left: 12px;
-  bottom: 0;
-  width: 100%;
-  background-color: #525966; 
-  color: white;
-  /*text-align: left;*/
-}
-
 .proficpic {
   display: block; 
+  max-width: 100%;
+  height: auto;
   margin-left: auto;
 	margin-right: auto; 
-  padding-top: 20px; 
-  /*border-style: solid; border-color: red;*/
+  border-radius: 50%; /* Makes the image circular */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
+  transition: box-shadow 0.5s ease; /* Smooth transition effect */
 }
-
+.proficpic:hover {
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+}
 .smallpic {
   display: block; 
   margin-left: auto;
 	margin-right: auto; 
   padding-top: 20px; 
-  
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+th {
+  background-color: #f2f2f2;
 }
