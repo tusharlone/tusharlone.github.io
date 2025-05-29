@@ -39,15 +39,16 @@ a{
   display: block;
 }
 .sidenav a.current {
-  background-color: #192f5c; /* Blue */
+  /*background-color: #192f5c; /* Blue */
+  background-image: linear-gradient(to left, rgba(102,144,227,0.2), rgba(18,62,150,1));
   color: white;
-  border: #192f5c 0.5px solid; /* Blue */
-  border-radius: 3px; /* Rounded corners */
+  border-bottom: #123E96 0.5px solid; /* Blue */
+  border-top: #123E96 0.5px solid; /* Blue */
 }
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #fbfbfb;
-  background-color: #396bcd; /* Black */
+  background-image: linear-gradient(to left, rgba(102,144,227,0.2), rgba(18,62,150,1));
 }
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
@@ -74,6 +75,9 @@ h5 {
   font-size: 22px;
   font-weight: 600;
   color: #111; /* Blue */
+  padding: 20px;
+  margin: 0px;
+  background-image: linear-gradient(to right, rgb(243, 247, 255, 1), rgba(255, 255, 255, 0.2));
 }
 .proficpic {
   display: block; 
