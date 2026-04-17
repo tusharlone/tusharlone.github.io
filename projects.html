@@ -40,27 +40,37 @@
 				<ol>
 					<li>
 						<big><b>InventOpt</b></big> &nbsp;
-						Discrete-event simulation models for supply chains and inventory networks and a case study.<br><br>
+						Simulation models, code, and research results for optimizing supply chain and inventory networks using discrete-event simulation.<br><br>
 						<p>
-							This Python project demonstrates how to optimize inventory levels
-							across a five-node supply chain network to maximize overall net profit, 
-							using Metamodel-based Optimization approach. This work is published in SIMULTECH 2023.
-							<br> 
-							Visit <a href="https://github.com/SupplyChainSimulation/InventOpt" target="_blank">GitHub repo</a> to learn more.
-						</p>						
+							This project demonstrates how to optimize inventory levels across a five-node supply chain network
+							to maximize overall net profit. It explores metamodel-based simulation optimization using
+							Gaussian Process Regression and Neural Network metamodels with local optimizers.
+							The repository is organized into four sequential modules:
+						</p>
+						<ol>
+							<li><b>Model</b>: Constructs a simulation model for supply chain networks using SimPy</li>
+							<li><b>Cost Accuracy Tradeoff</b>: Estimates computation budgets for running the model</li>
+							<li><b>Design Experimentation</b>: Manages experiment setup and data collection</li>
+							<li><b>Metamodel-based Optimization</b>: Applies optimization approaches to collected data</li>
+						</ol>
+						<br>
+						<p>
+							This work is based on the paper <i>"An Open Tool-set for Simulation, Design-space Exploration and Optimization of Supply Chains and Inventory Problems"</i> presented at SIMULTECH 2023, Rome.
+							<br>
+							Visit the <a href="https://github.com/SupplyChainSimulation/InventOpt" target="_blank">GitHub repo</a> to learn more.
+						</p>
 					</li>
 					<hr><br>
 					<li>
 						<big><b>SupplyNetPy</b></big> &nbsp;
-						An open source Python library for discrete-event simulation of supply chains.<br><br>
+						A Python library specifically designed to model and simulate different supply chain problems with ease.<br><br>
 						<p>
-							An open-source Python library designed specifically for modeling, simulating, and analyzing supply chains.
-							The library features supply chain-specific components to model arbitrary 
-							supply chain networks easily. It is built on Python’s SimPy discrete-event simulation framework and 
-							is flexible and extensible, allowing users to customize and extend its functionality as needed.
+							SupplyNetPy provides configurable, modular components — such as suppliers, manufacturers, distributors, and demand points — to build custom supply chain network architectures. It includes configurable policies for inventory management and replenishment strategies, enabling flexible approaches to stock control. Users can quickly assemble a supply chain, define demand and supply behaviors, then run simulations to evaluate key performance metrics such as throughput and profit.
+							<br><br>
+							The library is built on Python’s SimPy discrete-event simulation framework and is flexible and extensible, allowing users to customize and extend its functionality as needed.
 							<br><br>
 							For more details, visit the <a href="https://github.com/SupplyChainSimulation/SupplyNetPy" target="_blank">GitHub repo</a> or the <a href="https://supplychainsimulation.github.io/SupplyNetPy/" target="_blank">documentation</a>.
-						</p>						
+						</p>
 					</li>
 					<hr><br>
 				</ol>
