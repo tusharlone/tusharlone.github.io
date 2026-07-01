@@ -1,113 +1,208 @@
+/* ===== Design tokens ===== */
+:root{
+  --accent:      #1e3a5f;  /* deep navy — headings, active nav */
+  --accent-soft: #eaf0f7;  /* light navy tint */
+  --link:        #2563eb;  /* accessible blue links */
+  --link-hover:  #1d4ed8;
+  --ink:         #1a1a1a;  /* primary text */
+  --muted:       #5b6470;  /* secondary text, dates */
+  --surface:     #f7f9fc;  /* sidebar, table header */
+  --border:      #e5e7eb;  /* hairline borders */
+  --read:        80ch;    /* max prose width for readability */
+}
+
+/* ===== Base ===== */
 body{
   font-family: 'Inter', sans-serif;
-  margin-top: 25px;
   font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-top: 25px;
 }
 a{
-  color: #396bcd; /* Blue */
+  color: var(--link);
   text-decoration: none;
 }
-#name{
-  font-size: 30px;
-  font-weight: 600;
-  font-family: 'Times New Roman', Times, serif;
-  color: #111; /* Blue */
-  text-shadow: 2px 2px 5px rgb(234, 234, 234);
+a:hover{
+  color: var(--link-hover);
+  text-decoration: underline;
 }
-/* The sidebar menu */
-.sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: auto; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+/* Constrain prose for readability; tables stay full width */
+p, ul, ol{
+  max-width: var(--read);
+}
+html{
+  position: relative;
+  min-height: 100%;
+}
+
+/* ===== Name plate ===== */
+#name{
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ===== Sidebar navigation ===== */
+.sidenav{
+  height: 100%;          /* full-height */
+  width: auto;
+  position: fixed;       /* stay in place on scroll */
+  z-index: 1;
+  top: 0;
   left: 0;
-  background-color: #f3f7ff; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding: 20px 10px 20px 10px;
+  background-color: var(--surface);
+  overflow-x: hidden;
+  padding: 20px 10px;
   margin-top: 5px;
   margin-left: 5px;
-  border-right: #eaf1ff 5px solid;
+  border-right: 1px solid var(--border);
 }
-/* The navigation menu links */
-.sidenav a {
-  margin: 1px;
-  padding: 6px 8px 6px 8px;
+.sidenav a{
+  margin: 2px 1px;
+  padding: 6px 10px;
   text-decoration: none;
-  font-size: 18px;
-  color: #111;
+  font-size: 17px;
+  color: var(--ink);
   display: block;
+  border-radius: 6px;
 }
-.sidenav a.current {
-  /*background-color: #192f5c; /* Blue */
-  background-image: linear-gradient(to left, rgba(102,144,227,0.2), rgba(18,62,150,1));
-  color: white;
-  border-bottom: #123E96 0.5px solid; /* Blue */
-  border-top: #123E96 0.5px solid; /* Blue */
+.sidenav a.current,
+.sidenav a:hover{
+  background-color: var(--accent);  /* solid — keeps white text readable */
+  color: #fff;
+  text-decoration: none;
 }
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #fbfbfb;
-  background-image: linear-gradient(to left, rgba(102,144,227,0.2), rgba(18,62,150,1));
+.sidenav a:focus-visible{
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
 }
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidenav {
+
+/* Topbar under 700px, stacked under 400px */
+@media screen and (max-width: 700px){
+  .sidenav{
     width: 100%;
     height: auto;
     position: relative;
   }
-  .sidenav a {float: left;}
-  div.content {margin-left: 0;}
+  .sidenav a{ float: left; }
 }
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidenav a {
+@media screen and (max-width: 400px){
+  .sidenav a{
     text-align: center;
     float: none;
   }
 }
-html {
-  position: relative;
-  min-height: 100%;
-}
-h5 {
-  font-size: 22px;
+
+/* ===== Section headings ===== */
+h5{
+  font-size: 17px;
   font-weight: 600;
-  color: #111; /* Blue */
-  padding: 20px;
-  margin: 0px;
-  background-image: linear-gradient(to right, rgb(243, 247, 255, 1), rgba(255, 255, 255, 0.2));
+  color: var(--accent);
+  padding: 0px 0px 0px 14px;
+  margin: 0;
+  border-left: 4px solid var(--accent);
 }
-.proficpic {
-  display: block; 
+
+/* ===== Profile picture ===== */
+.proficpic{
+  display: block;
   max-width: 100%;
   height: auto;
   margin-left: auto;
-	margin-right: auto; 
-  border-radius: 50%; /* Makes the image circular */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
-  transition: box-shadow 0.5s ease; /* Smooth transition effect */
+  margin-right: auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.5s ease;
 }
-.proficpic:hover {
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+.proficpic:hover{
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.4);
 }
-.smallpic {
-  display: block; 
-  margin-left: auto;
-	margin-right: auto; 
-  padding-top: 20px; 
+
+/* ===== Tables (Bootstrap handles structure; theme the header) ===== */
+.table thead th{
+  background-color: var(--surface);
+  border-bottom: 2px solid var(--border);
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+
+/* ===== Talks & presentations ===== */
+.talk{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  max-width: var(--read);
+  margin: 0 0 20px 0;
 }
-th, td {
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #ddd;
+.talk .thumb{
+  flex: 0 0 auto;
 }
-th {
-  background-color: #f2f2f2;
+.talk .thumb img{
+  display: block;
+  width: 170px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+.talk .thumb:hover img{
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.28);
+}
+.talk .talk-title{
+  /*font-size: 16px;*/
+  font-weight: 500;
+}
+@media screen and (max-width: 500px){
+  .talk{ flex-direction: column; }
+  .talk .thumb img{ width: 70%; }
+}
+
+/* ===== News ===== */
+ul.news{
+  list-style: none;
+  padding-left: 0;
+}
+ul.news li{
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+}
+ul.news li:last-child{
+  border-bottom: none;
+}
+.news-date{
+  display: inline-block;
+  min-width: 78px;
+  margin-right: 6px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ===== Skills ===== */
+ul.skills{
+  list-style: none;
+  padding-left: 0;
+}
+ul.skills li{
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+}
+ul.skills li b{
+  flex: 0 0 150px;
+  color: var(--accent);
+}
+@media screen and (max-width: 500px){
+  ul.skills li{ flex-direction: column; gap: 2px; }
+  ul.skills li b{ flex-basis: auto; }
+}
+
+/* ===== Footer ===== */
+footer{
+  max-width: var(--read);
+  margin: 28px auto 12px auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
 }
