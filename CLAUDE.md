@@ -13,9 +13,9 @@ No build, test, or lint commands. Open any `.html` file directly in a browser to
 ## Architecture
 
 - **Layout**: Bootstrap 5.3 grid (`container` > `row` > `col-md-1` sidebar + `col-md-11` content). Every page repeats this structure with a fixed left sidebar navigation.
-- **Styling**: `styles.css` is the single shared stylesheet, loaded after Bootstrap. The `Inter` font is loaded from Google Fonts. The sidebar uses a gradient highlight (`linear-gradient`) for the active page via the `class="current"` marker.
-- **Responsive behavior**: The sidebar collapses to a horizontal top bar at `<=700px` and stacks vertically at `<=400px` (media queries in `styles.css`).
-- **Navigation**: Each HTML page has its own copy of the sidebar nav. The `class="current"` attribute must be set on the correct `<a>` tag in each page. When adding a new page, update the sidebar in **all** existing pages.
+- **Styling**: `styles.css` is the single shared stylesheet, loaded after Bootstrap. The `Inter` font is loaded from Google Fonts. The sidebar highlights the active page with the solid accent color via `class="current"` (or the sub-nav `<summary>`, see Navigation).
+- **Responsive behavior**: The sidebar collapses to a horizontal top bar at `<=700px` (page-local section links are hidden there) and stacks vertically at `<=400px` (media queries in `styles.css`).
+- **Navigation**: Each HTML page has its own copy of the sidebar nav. On `index.html` the active entry is a plain `<a class="current">`. On the four content pages, the page's own entry is instead a `<details class="subnav" open>` block: its `<summary>` is the page name and it contains in-page anchor links (`href="#..."`) matching `id`s on that page's `<h5>` headings (plus the project `<li>` ids on `projects.html`). When adding a new page or section, update the sidebar in **all** affected pages.
 - **Assets**: `img/` for photos and social logos, `ico/` for skill/tool icons and the favicon.
 - **External links** use `target="_blank"` throughout.
 

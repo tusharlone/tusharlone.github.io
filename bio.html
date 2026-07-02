@@ -20,7 +20,15 @@
 			<div class="col-md-1">
 				<div class="sidenav">
 					<a href="index.html">Home</a>
-					<a href="bio.html" class="current">Bio</a>
+					<details class="subnav" open>
+						<summary>Bio</summary>
+						<a href="#education">Education</a>
+						<a href="#employment">Employment</a>
+						<a href="#workshops">Workshops</a>
+						<a href="#talks">Talks</a>
+						<a href="#awards">Awards</a>
+						<a href="#skills">Skills</a>
+					</details>
 					<a href="publications.html">Publications</a>
 					<a href="projects.html">Projects</a>
 					<a href="teaching.html">Teaching</a>
@@ -31,7 +39,7 @@
 
 			<div class="col-md-11">
 				<hr>
-				<h5> Education </h5>
+				<h5 id="education"> Education </h5>
 				<hr>	
 				<ul>
 					<li>
@@ -53,7 +61,7 @@
 					</li>
 				</ul>
 				<hr>
-				<h5>Past Employments</h5>
+				<h5 id="employment">Past Employments</h5>
 				<hr>
 				<table class="table table-bordered table-striped">
 				<thead>
@@ -91,7 +99,7 @@
 
 				<!-- Workshops, Conferences attended/participated-->
 				<hr>
-				<h5> Workshops and Conferences </h5>
+				<h5 id="workshops"> Workshops and Conferences </h5>
 				<hr>
 				<table class="table table-bordered table-striped">
 				<thead>
@@ -136,7 +144,7 @@
 				</tbody>
 				</table>
 				<hr>
-				<h5> Talks and Presentations </h5>
+				<h5 id="talks"> Talks and Presentations </h5>
 				<hr>
 				<div class="talk">
 					<a class="thumb" href="resources/sigsim-pads2024-colloquium-poster.pdf" target="_blank"><img src="resources/thumbs/sigsim-pads2024-colloquium-poster.jpg" alt="SIGSIM-PADS 2024 PhD Colloquium poster" loading="lazy"></a>
@@ -165,14 +173,14 @@
 				</div>
 				<!-- Awards, Grants-->
 				<hr>
-				<h5> Awards/Grants </h5>
+				<h5 id="awards"> Awards/Grants </h5>
 				<hr>
 					<ul>
 						<li>Travel grant from ACM for attending the 38th ACM SIGSIM Conference on Principles of Advanced Discrete Simulation (2024).</li>
 						<li>Travel grant from IIT Bombay to attend IndoML 2023 held on 21-23 December 2023 at IIT Bombay.</li>
 					</ul>
 				<hr>
-				<h5> Skills </h5>
+				<h5 id="skills"> Skills </h5>
 				<hr>
 				<ul class="skills">
 					<li><b>Languages:</b> Python, C/C++, MATLAB</li>
