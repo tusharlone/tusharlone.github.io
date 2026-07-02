@@ -34,17 +34,20 @@
 				<h5> Research Overview </h5>
 				<hr>
 				<p>
-					My research develops methods for the modeling, simulation, analysis, and optimization of supply chain networks, with the long-term aim of <b>optimizing network structure and parameters together</b>. The work advances along three connected themes.
+					My research develops methods for the modeling, simulation, analysis, and optimization of supply chain networks (SCNs). The work advances along three connected themes.
 				</p>
 				<ul>
 					<li>
-						<p><b>Modeling and simulation of supply chain problems.</b> Supply chains are large, stochastic systems whose behavior is studied through discrete-event simulation. To support this line of work, we developed <b>SupplyNetPy</b>, a simulation library that currently supports the modeling of inventory dynamics and supply chain disruptions.</p>
+						<p><b>Modeling and Simulation of Supply Chain (SC) Problems.</b> Supply chains are complex, stochastic systems with intricate behaviors. Traditional analytical methods often fall short in capturing this complexity. In contrast, simulation-based methods can effectively represent such intricate dynamics. To facilitate this approach, we developed <b>SupplyNetPy</b>, a simulation library that currently models inventory dynamics and supply chain disruptions.</p>
 					</li>
 					<li>
-						<p><b>Simulation-based analysis and optimization.</b> Building on this foundation, I study how to analyze and optimize supply chains through simulation. SupplyNetPy now supports this work by generating, on demand, the performance data that such analysis and optimization require.</p>		
+						<p><b>Simulation-Based Analysis and Optimization</b>. Building on this foundation, I focus on analyzing and optimizing supply chains (SCs) through simulation. SupplyNetPy is a modular, component-based open-source library that we designed and developed specifically for modeling and simulating various supply chain problems. With this library, we can model and simulate diverse supply chain networks (SCNs) with multiple configurations, generating the performance data necessary for effective analysis and optimization.</p>
 					</li>
 					<li>
-						<p><b>Metamodeling with Graph Neural Networks.</b> Optimizing a supply chain through simulation is costly, because every candidate design must be simulated many times. A metamodel reduces this cost by learning to approximate the simulation and then standing in for it inside the optimization loop. Supply chain networks are naturally structured as graphs. Classical metamodels such as Gaussian process regression and standard neural networks assume a single fixed network structure, so they cannot represent changes to it. A <b>Graph Neural Network (GNN)</b> instead learns from the graph structure together with the node and edge parameters, which makes the joint optimization of network structure and parameters possible. My research explores GNN metamodels for the simulation-based analysis and optimization of supply chain problems. The central goal is to exploit the differentiability of GNNs for gradient-based design-space exploration and sensitivity analysis of supply chain networks, and in turn for the joint optimization of their parameters and structure.</p>
+						<p><b>Metamodeling with Graph Neural Networks (GNN).</b> Optimizing an SC through simulation is costly, because every candidate design must be simulated many times under different configurations. A metamodel helps reduce this cost by learning to approximate the simulation, allowing it to be used within the optimization loop. Supply chain networks (SCNs) are inherently graph structures. Traditional metamodels, such as Gaussian process regression and standard neural networks, assume that the SCN structure is fixed, which limits their application to arbitrary SCNs. In contrast, a GNN learns from the graph structure along with the parameters of the nodes and edges, enabling the joint optimization of the network structure and its parameters. My research focuses on developing GNN metamodels for the simulation-based analysis and optimization of supply chain problems.
+					</li>
+					<li>
+						<p><b>Sensitivity Analysis.</b> The central goal is to exploit the differentiability of GNNs for gradient-based design-space exploration and sensitivity analysis of SCNs, and in turn for the joint optimization of their parameters and structure.</p>
 					</li>
 				</ul>
 				<hr>
@@ -53,28 +56,31 @@
 				<ol>
 					<li id="inventopt">
 						<big><b>InventOpt</b></big> &nbsp;
-						Simulation models, code, and results from a study of whether metamodels can make simulation-based optimization of inventory networks more efficient.<br><br>
+						Simulation models, code, and results from a study of different metamodels for efficient simulation-based optimization (SBO) of supply chains and inventory networks.<br><br>
 						<p>
-							A metamodel can improve the efficiency of simulation-based optimization (SBO). This project tests that idea on the task of setting inventory parameters across a five-node supply chain network so as to minimize cost and maximize profit. It begins by generating simulation data and running an exhaustive, grid-search SBO over the space of configurations. This locates the optimal inventory parameters and, at the same time, yields a reference solution against which metamodel-based optimization can be measured.
+							A metamodel can enhance the efficiency of SBO in supply chains. This study investigates different metamodels, specifically Gaussian Process Regression (GPR) and Neural Networks (NN), to identify optimal inventory parameter values that maximize profit and minimize costs in a five-node supply chain network (SCN). The process begins by generating simulation data and conducting an exhaustive grid search for SBO across various configurations. This approach not only identifies the optimal inventory parameters but also provides a reference solution against which the performance of metamodel-based optimization can be evaluated.
 						</p>
 						<p>
-							The study examines two metamodels, Gaussian process regression (GPR) and a neural network (NN). For each, it trains the metamodel, tunes its hyperparameters, assesses its goodness of fit, applies local optimizers to locate the optimum, and compares that optimum against the exhaustive SBO solution. Through this comparison, the study addresses four design decisions in metamodel-based optimization:
+							For each metamodel GPR and NN, we train the metamodel, tune its hyperparameters, assess its goodness of fit, apply local optimizers to locate the optimum, and compare that optimum against the exhaustive SBO solution. Through this comparison, the study addresses four design decisions in metamodel-based optimization:
 						</p>
 						<ol>
-							<li>Which metamodel is better suited to supply chains, in particular to finding the inventory parameters that minimize cost and maximize profit?</li>
+							<li>Which metamodel is better suited to SCs, in particular to finding the inventory parameters that minimize cost and maximize profit?</li>
 							<li>How many training points are enough to obtain a metamodel with a good fit?</li>
 							<li>How should the metamodel hyperparameters be tuned?</li>
 							<li>Which local optimizer works well with each metamodel?</li>
 						</ol>
 						<br>
 						<p>
-							This work is described in the paper <i>"An Open Tool-set for Simulation, Design-space Exploration and Optimization of Supply Chains and Inventory Problems"</i> presented at SIMULTECH 2023, Rome.
+							This work is described in the paper <i>"An Open Tool-set for Simulation, Design-space Exploration and Optimization of SCs and Inventory Problems"</i> presented at SIMULTECH 2023, Rome.
 						</p>
 						<p>
-							This study lays the foundation for the work that follows. It also exposes a key limitation of traditional metamodels: they cannot account for supply chain network structure (topology). Each metamodel is therefore tied to a single fixed network and cannot predict the performance of arbitrary supply chains. This limitation motivates the graph-based approach pursued in the <a href="#gnn-metamodeling">GNN Metamodeling</a> project below.
+							This study lays the foundation for the work that follows. It also exposes a key limitation of traditional metamodels: they cannot account for SCN structure (topology). Each metamodel is therefore tied to a single fixed network and cannot predict the performance of arbitrary SCs. This limitation motivates the graph-based approach pursued in the <a href="#gnn-metamodeling">GNN Metamodeling</a> project below.
 						</p>
 						<p>
-							The same limitation prompted a broader review of existing tools for the modeling and simulation of supply chains. This review continues the InventOpt work rather than forming part of the SIMULTECH paper above, and it is currently being prepared for submission. It surveys recent studies that model and simulate different aspects of supply chains (inventory, logistics, disruption, and forecasting) across a range of domains (food supply chains, cold chains, and healthcare supply chains, among others), and it catalogues the tools and frameworks in common use together with the core components, parameters, and performance metrics that recur across supply chain problems and domains. The review found a scarcity of open-source libraries built specifically for supply chain simulation, which motivated the development of <a href="#supplynetpy">SupplyNetPy</a>. The manuscript is not yet published, but the review artifacts, namely the identified node, edge, and network parameters and the performance metrics, are already openly available in the InventOpt repository.
+							Metamodel-based approach for SBO of SCs requires training data from a simulation model. This drove us to investigate existing tools and frameworks for supply chain simulation modeling. We reviewed recent studies that model and simulate various aspects of supply chains, including inventory, logistics, resilience, and demand forecasting, for SC analysis and optimization. We also reviewed the tools/frameworks these studies use to model various aspects of SCs. The review reveals a dearth of well-maintained, open-source tools with supply chain-specific components, which motivated the development of <a href="#supplynetpy">SupplyNetPy</a>. 
+						</p>
+						<p>
+							This review builds upon the InventOpt work and is currently being prepared for submission. The review artifacts, including the identified node, edge, and network parameters, as well as the performance metrics, are already available in the InventOpt repository.
 						</p>
 						<p>
 							Visit the <a href="https://github.com/SupplyChainSimulation/InventOpt" target="_blank">GitHub repo</a> to learn more.
@@ -86,10 +92,10 @@
 						<big><b>SupplyNetPy</b></big> &nbsp;
 						An open-source Python library for modeling and simulating a wide range of supply chain problems.<br><br>
 						<p>
-							SupplyNetPy was developed to fill a gap identified by the literature review that continues the <a href="#inventopt">InventOpt</a> work, namely the scarcity of open-source tools dedicated to supply chain simulation. It provides configurable, modular components, including suppliers, manufacturers, distributors, and demand points, from which custom supply chain network architectures can be assembled. Configurable inventory and replenishment policies give flexible control over stock, and the library also supports the modeling of supply chain disruptions.
+							SupplyNetPy was developed to fill a gap identified by the literature review that continues the <a href="#inventopt">InventOpt</a> work, namely the scarcity of open-source tools dedicated to SC simulation. It provides configurable, modular components, including product, inventory, suppliers, manufacturers, distributors, and demand points, from which custom SCN architectures can be assembled. Configurable inventory and replenishment policies provide flexible control over stock, and the library also supports modeling product perishability and SC disruptions.
 						</p>
 						<p>
-							A user can define demand and supply behavior, run a simulation, and evaluate key performance metrics such as throughput and profit. The library is built on Python's SimPy discrete-event simulation framework and is designed to be extended, so existing components can be adapted or new ones added to suit a given problem.
+							A user can create nodes (suppliers, manufacturers, distributors, retailers, and demand), link them to create an SCN, run simulations, and evaluate key performance metrics such as throughput and profit. The SCN can be easily reconfigured and rerun for what-if analysis or simulation-based optimization. 
 						</p>
 						<p>
 							SupplyNetPy is described in the paper <i>"SupplyNetPy: An Open-Source Python Library for High-Fidelity Modeling and Simulation of Arbitrary Supply Chain and Inventory Networks"</i> (to appear, WSC 2026).
@@ -103,10 +109,10 @@
 						<big><b>GNN Metamodeling</b></big> &nbsp;
 						Graph Neural Networks as differentiable, structure-aware metamodels for simulation-based optimization of supply chains.<br><br>
 						<p>
-							Where classical metamodels are tied to a single fixed network, this work investigates Graph Neural Networks (GNNs) as structure-aware metamodels for supply chain performance prediction. A custom message-passing GNN, edge-conditioned and node-type-aware, predicts five performance metrics spanning both the node and network level (inventory carrying cost, inventory replenishment cost, transport cost, revenue, and profit) at R<sup>2</sup> &asymp; 0.99. A single trained model generalizes to networks more than 20&times; larger than those seen during training.
+							Where classical metamodels are tied to a single fixed network, this work investigates Graph Neural Networks (GNNs) as structure-aware metamodels for SC performance prediction. In this work, we explored different GNN architectures to learn SCN performance from its structure and parameter configurations. We designed a custom message-passing GNN, edge-conditioned and node-type-aware, that predicts five performance metrics spanning both the node and network level (inventory carrying cost, inventory replenishment cost, transport cost, revenue, and profit) at R<sup>2</sup> &asymp; 0.99. A single trained model generalizes to networks more than 20&times; larger than those seen during training.
 						</p>
 						<p>
-							The study is accompanied by a public dataset of 100,000 programmatically generated supply chain graphs, built with SupplyNetPy, and by an analysis of the trade-off between accuracy and computational cost that shows a single GNN forward pass to be orders of magnitude faster than a full simulation. Unlike classical metamodels, a differentiable GNN processes node parameters, edge parameters, and graph structure together, which opens a path to the joint optimization of network structure and parameters.
+							The study is accompanied by a public dataset of 100,000 programmatically generated SC graphs, built with SupplyNetPy, and by an analysis of the trade-off between accuracy and computational cost that shows a single GNN forward pass to be orders of magnitude faster than a full simulation. Unlike classical metamodels, a differentiable GNN processes node parameters, edge parameters, and graph structure together, which opens a path to the joint optimization of network structure and parameters.
 						</p>
 						<p>
 							This work is described in the paper <i>"On the Potential of Graph Neural Networks as Metamodels for Supply Chain Optimization: Dataset, Architectures, and Directions"</i> (to appear, WSC 2026).
@@ -117,11 +123,13 @@
 				<hr>
 				<h5> Future Directions </h5>
 				<hr>
-				<p>The work continues along a single arc toward differentiable, structure-aware supply chain optimization, in three directions:</p>
+				<p>The work continues along a single arc toward differentiable, structure-aware SC optimization, in three directions:</p>
 				<ul>
-					<li>Enrich the training data beyond two-echelon, single-product, deterministic-demand networks by adding echelon depth, heterogeneous node and edge types, stochastic demand, richer replenishment policies, and broader parameter ranges.</li>
-					<li>Compare GNN architecture families (GCN, GAT, GIN, NNConv, GINE, PNA, and their heterogeneous variants) systematically, in order to identify the inductive biases that matter for supply chain structure and to sharpen the trade-off between accuracy and computational cost.</li>
-					<li>Exploit the differentiable metamodel for <b>joint optimization of network structure and parameters</b>, for example through a continuous relaxation of edge-existence probabilities, together with gradient-based sensitivity analysis and fast what-if exploration of the design space.</li>
+					<li>Enrich the training data by adding echelon depth, heterogeneous node and edge types, stochastic demand, richer replenishment policies, and broader parameter ranges.</li>
+
+					<li>Compare GNN architecture families (GCN, GAT, GIN, NNConv, GINE, PNA, and their heterogeneous variants) systematically, in order to identify the inductive biases that matter for SC structure and to sharpen the trade-off between accuracy and computational cost.</li>
+
+					<li>Exploit the differentiable metamodel for <b>joint optimization of network structure and parameters</b>, for example, through a continuous relaxation of edge-existence probabilities, together with gradient-based sensitivity analysis and fast what-if exploration of the design space.</li>
 				</ul>
 			</div>
 		
