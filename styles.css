@@ -1,31 +1,55 @@
-/* ===== Design tokens ===== */
+/* ===== Design tokens =====
+   Type: IBM Plex superfamily in three roles — Serif for prose, Sans for
+   interface chrome (nav, buttons, table heads), Mono for identifiers
+   (dates, IDs, the footer stamp).
+   Signature: section headings are marked by a segmented rule rather than a
+   solid one — discrete-event simulation advances in ticks. */
 :root{
-  --accent:      #1e3a5f;  /* deep navy — headings, active nav */
-  --accent-soft: #eaf0f7;  /* light navy tint */
-  --link:        #2563eb;  /* accessible blue links */
-  --link-hover:  #1d4ed8;
-  --ink:         #1a1a1a;  /* primary text */
-  --muted:       #5b6470;  /* secondary text, dates */
-  --surface:     #f7f9fc;  /* sidebar, table header */
-  --border:      #e5e7eb;  /* hairline borders */
-  --read:        80ch;    /* max prose width for readability */
+  --accent:      #0f4c4a;  /* petrol teal — headings, active nav, links */
+  --accent-soft: #e4edeb;  /* teal tint — hover, table header */
+  --signal:      #97591a;  /* ochre — reserved for time/metadata only */
+  --ink:         #16191c;  /* primary text */
+  --muted:       #5c646b;  /* secondary text */
+  --paper:       #fbfaf9;  /* page ground */
+  --surface:     #f4f2ef;  /* sidebar */
+  --border:      #dee2df;  /* hairline borders */
+  --read:        72ch;     /* max prose width for readability */
+
+  --sans:  'IBM Plex Sans', system-ui, sans-serif;
+  --serif: 'IBM Plex Serif', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, monospace;
 }
 
 /* ===== Base ===== */
 body{
-  font-family: 'Inter', sans-serif;
-  font-size: 14.5px;
-  line-height: 1.6;
+  font-family: var(--serif);
+  font-size: 15.5px;
+  line-height: 1.65;
   color: var(--ink);
+  background-color: var(--paper);
   margin-top: 25px;
 }
+/* Underline links only inside prose — leaves nav chips and image links clean */
+p a, li a, td a{
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
 a{
-  color: var(--link);
+  color: var(--accent);
   text-decoration: none;
 }
 a:hover{
-  color: var(--link-hover);
+  color: var(--accent);
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+:focus-visible{
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+::selection{
+  background: var(--accent-soft);
 }
 /* Constrain prose for readability; tables stay full width */
 p, ul, ol{
@@ -37,11 +61,31 @@ html{
   scroll-behavior: smooth;
 }
 
-/* ===== Name plate ===== */
+/* ===== Name plate =====
+   This is the <h1> on the home page; the rule cancels the heading defaults so
+   the promotion from <b> to <h1> is semantic only, with no visual change. */
 #name{
-  font-size: 20px;
-  font-weight: 700;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
   color: var(--ink);
+  margin: 0 0 2px 0;
+}
+
+/* Page-title <h1> on the content pages: announced to screen readers and
+   search engines, not shown, since the layout carries no visible page title. */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ===== Sidebar navigation ===== */
@@ -52,6 +96,7 @@ html{
   z-index: 1;
   top: 0;
   left: 0;
+  font-family: var(--sans);
   background-color: var(--surface);
   overflow-x: hidden;
   padding: 20px 10px;
@@ -63,20 +108,16 @@ html{
   margin: 2px 1px;
   padding: 6px 10px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 16px;
   color: var(--ink);
   display: block;
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .sidenav a.current,
 .sidenav a:hover{
   background-color: var(--accent);  /* solid — keeps white text readable */
   color: #fff;
   text-decoration: none;
-}
-.sidenav a:focus-visible{
-  outline: 2px solid var(--link);
-  outline-offset: 2px;
 }
 
 /* ===== Page-local section links (current page's entry only) ===== */
@@ -86,8 +127,9 @@ details.subnav > summary{
   user-select: none;
   margin: 2px 1px;
   padding: 6px 26px 6px 10px;   /* right padding leaves room for the chevron */
-  font-size: 17px;
-  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 16px;
+  border-radius: 3px;
   background-color: var(--accent);
   color: #fff;
   position: relative;
@@ -105,12 +147,9 @@ details.subnav > summary::after{
 details.subnav[open] > summary::after{
   transform: rotate(90deg);
 }
-details.subnav > summary:focus-visible{
-  outline: 2px solid var(--link);
-  outline-offset: 2px;
-}
 .sidenav .subnav a{
-  font-size: 14px;
+  font-family: var(--mono);
+  font-size: 12.5px;
   margin: 1px 1px;
   padding: 3px 10px 3px 24px;
   color: var(--muted);
@@ -123,7 +162,7 @@ details.subnav > summary:focus-visible{
   color: var(--accent);
 }
 /* breathing room when jumping to an anchor */
-h5, li[id]{
+h2, li[id]{
   scroll-margin-top: 10px;
 }
 
@@ -136,9 +175,15 @@ h5, li[id]{
 /* Topbar under 700px, stacked under 400px */
 @media screen and (max-width: 700px){
   .sidenav{
-    width: 100%;
+    /* width:auto + no side margin: width:100% plus the 5px margin used to push
+       the page wider than the viewport and clip content on phones */
+    width: auto;
     height: auto;
     position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
   }
   .sidenav a{ float: left; }
   /* keep the current page's chip in the bar; hide section links on phones */
@@ -156,14 +201,56 @@ h5, li[id]{
   details.subnav > summary{ text-align: center; }
 }
 
-/* ===== Section headings ===== */
-h5{
+/* ===== Section headings =====
+   The marker is segmented, not solid: discrete ticks, one per heading. */
+h2{
+  font-family: var(--serif);
   font-size: 17px;
   font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
   color: var(--accent);
-  padding: 0px 0px 0px 14px;
+  padding: 0 0 0 16px;
   margin: 0;
-  border-left: 4px solid var(--accent);
+  position: relative;
+}
+h2::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  bottom: -2px;
+  width: 5px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--accent) 0 6px,
+    transparent 6px 9px
+  );
+}
+
+/* ===== Publication titles ===== */
+.ptitle{
+  display: inline-block;
+  margin-top: 1px;
+  font-size: 16.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ===== Buttons (Bootstrap structure; theme the skin) ===== */
+.btn-outline-dark{
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 2px;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-outline-dark:hover,
+.btn-outline-dark:focus-visible{
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 /* ===== Profile picture ===== */
@@ -183,7 +270,11 @@ h5{
 
 /* ===== Tables (Bootstrap handles structure; theme the header) ===== */
 .table thead th{
-  background-color: var(--surface);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent);
+  background-color: var(--accent-soft);
   border-bottom: 2px solid var(--border);
 }
 
@@ -203,7 +294,7 @@ h5{
   width: 170px;
   height: auto;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 2px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   transition: box-shadow 0.3s ease;
 }
@@ -211,8 +302,7 @@ h5{
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.28);
 }
 .talk .talk-title{
-  /*font-size: 16px;*/
-  font-weight: 500;
+  font-weight: 600;
 }
 @media screen and (max-width: 500px){
   .talk{ flex-direction: column; }
@@ -224,8 +314,11 @@ ul.news{
   list-style: none;
   padding-left: 0;
 }
+/* Hanging indent: wrapped lines align under the text, not back under the date.
+   Done with text-indent rather than flex because each li holds inline content. */
 ul.news li{
-  padding: 7px 0;
+  padding: 7px 0 7px 82px;
+  text-indent: -82px;
   border-bottom: 1px solid var(--border);
 }
 ul.news li:last-child{
@@ -233,10 +326,13 @@ ul.news li:last-child{
 }
 .news-date{
   display: inline-block;
-  min-width: 78px;
-  margin-right: 6px;
-  font-weight: 600;
-  color: var(--accent);
+  width: 74px;
+  margin-right: 8px;
+  text-indent: 0;        /* cancel the li hanging indent for the date itself */
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--signal);   /* the one warm accent, reserved for time */
 }
 
 /* ===== Skills ===== */
@@ -251,6 +347,8 @@ ul.skills li{
 }
 ul.skills li b{
   flex: 0 0 150px;
+  font-family: var(--sans);
+  font-weight: 500;
   color: var(--accent);
 }
 @media screen and (max-width: 500px){
@@ -265,6 +363,16 @@ footer{
   padding-top: 14px;
   border-top: 1px solid var(--border);
   text-align: center;
-  font-size: 13px;
+  font-family: var(--mono);
+  font-size: 12px;
   color: var(--muted);
+}
+
+/* ===== Quality floor ===== */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
